@@ -1,7 +1,8 @@
-package com.nicomahnic.capgeminichallenge
+package com.nicomahnic.capgeminichallenge.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nicomahnic.capgeminichallenge.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
