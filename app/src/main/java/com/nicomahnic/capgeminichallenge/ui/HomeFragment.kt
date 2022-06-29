@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.nicomahnic.capgeminichallenge.HomeViewModel
+import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel

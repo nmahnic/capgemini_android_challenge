@@ -1,4 +1,4 @@
-package com.nicomahnic.capgeminichallenge
+package com.nicomahnic.capgeminichallenge.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
