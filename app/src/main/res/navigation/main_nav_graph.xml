@@ -20,7 +20,7 @@
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
         <argument
-            android:name="character"
-            app:argType="com.nicomahnic.capgeminichallenge.models.MarvelCharacter" />
+            android:name="item"
+            app:argType="com.nicomahnic.capgeminichallenge.models.MarvelItem" />
     </fragment>
 </navigation>

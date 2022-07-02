@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.filter
-import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import com.nicomahnic.capgeminichallenge.repository.Repository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -32,6 +31,6 @@ class HomeViewModel constructor(
 }
 
 data class ViewModelState(
-    val data: PagingData<MarvelCharacter>? = null,
+    val data: PagingData<MarvelItem>? = null,
     val spinner: Boolean = true,
 )
