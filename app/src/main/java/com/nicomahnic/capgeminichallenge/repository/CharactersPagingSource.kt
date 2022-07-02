@@ -2,7 +2,9 @@ package com.nicomahnic.capgeminichallenge.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.nicomahnic.capgeminichallenge.datasource.FetchMarvelCharacter
 import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import kotlinx.coroutines.delay
 import kotlin.math.max
 
 class CharactersPagingSource constructor(
@@ -27,7 +29,7 @@ class CharactersPagingSource constructor(
                 STARTING_KEY -> null
                 else -> ensureValidKey(key = range.first - params.loadSize)
             },
-            nextKey = range.last + 10
+            nextKey = range.last + Repository.ITEMS_PER_PAGE
         )
     }
 

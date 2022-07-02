@@ -2,27 +2,36 @@ package com.nicomahnic.capgeminichallenge.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.filter
 import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
-import com.nicomahnic.capgeminichallenge.repository.CharactersPagingSource
-import kotlinx.coroutines.flow.Flow
+import com.nicomahnic.capgeminichallenge.repository.Repository
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class HomeViewModel constructor(
-    private val charactersPagingSource: CharactersPagingSource
+    private val repository: Repository
 ): ViewModel() {
 
-    val items: Flow<PagingData<MarvelCharacter>> = Pager(
-        config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
-        pagingSourceFactory = { charactersPagingSource }
-    )
-        .flow
-        .cachedIn(viewModelScope)
+    private val _state = MutableStateFlow(ViewModelState())
+    val state: StateFlow<ViewModelState> get() = _state
 
-    companion object {
-        private const val ITEMS_PER_PAGE = 10
+    init {
+        viewModelScope.launch {
+            repository.getCharacters()
+                .cachedIn(viewModelScope)
+                .collectLatest { characters ->
+                _state.value = ViewModelState(
+                    characters,
+                    false
+                )
+            }
+        }
     }
-
 }
+
+data class ViewModelState(
+    val data: PagingData<MarvelCharacter>? = null,
+    val spinner: Boolean = true,
+)

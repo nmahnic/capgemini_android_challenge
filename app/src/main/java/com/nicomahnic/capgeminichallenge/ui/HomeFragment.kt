@@ -7,13 +7,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
 import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
 import com.nicomahnic.capgeminichallenge.ui.adapter.CharacterAdapter
+import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -32,14 +34,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter  = CharacterAdapter(onItemSelected)
         binding.rvCharacters.adapter = adapter
 
-        lifecycleScope.launch {
-            viewModel.items.collectLatest {
-                adapter.submitData(it)
-            }
-        }
-
         binding.btnFetch.setOnClickListener {
             Log.e("NM", "btnFetch.setOnClickListener")
+        }
+
+        lifecycleScope.launch{
+            viewModel.state.collectLatest { state ->
+                Log.e("NM", "STATE -> ${state}")
+                state.data?.let { characters ->
+                    Log.e("NM", "SPINNER -> ${state.spinner} ${state.data}")
+                    binding.progress.visibility = if (state.spinner) View.VISIBLE else View.GONE
+                    adapter.submitData(characters)
+                }
+            }
         }
 
     }
