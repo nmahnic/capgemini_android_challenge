@@ -32,20 +32,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter  = CharacterAdapter(onItemSelected)
         binding.rvCharacters.adapter = adapter
 
-        binding.btnFetch.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.items.collectLatest {
-                    adapter.submitData(it)
-                }
+        lifecycleScope.launch {
+            viewModel.items.collectLatest {
+                adapter.submitData(it)
             }
+        }
+
+        binding.btnFetch.setOnClickListener {
+            Log.e("NM", "btnFetch.setOnClickListener")
         }
 
     }
 
     private val onItemSelected = object :  CharacterAdapter.ItemListener {
         override fun onBtnClick(character: MarvelCharacter) {
-            Log.e("NM", "character -> $character")
-            val action = HomeFragmentDirections.actionHomeFragmentToDescriptionFragment()
+            Log.d("NM", "character -> $character")
+            val action = HomeFragmentDirections.actionHomeFragmentToDescriptionFragment(character)
             findNavController().navigate(action)
         }
     }
