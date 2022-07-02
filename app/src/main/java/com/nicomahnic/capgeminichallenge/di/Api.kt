@@ -2,6 +2,7 @@ package com.nicomahnic.capgeminichallenge.di
 
 import com.nicomahnic.capgeminichallenge.BuildConfig
 import com.nicomahnic.capgeminichallenge.api.MarvelService
+import com.nicomahnic.capgeminichallenge.repository.CharactersPagingSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -21,6 +22,10 @@ object Api {
     val networkModule = module {
         factory { provideOkHttpClient() }
         single { provideRetrofit(get()) }
+    }
+
+    val pagingModule = module {
+        single { CharactersPagingSource( get() ) }
     }
 
     private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

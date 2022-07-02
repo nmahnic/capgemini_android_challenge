@@ -1,30 +1,28 @@
 package com.nicomahnic.capgeminichallenge.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.nicomahnic.capgeminichallenge.repository.FetchMarvelCharacter
-import kotlinx.coroutines.*
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import com.nicomahnic.capgeminichallenge.repository.CharactersPagingSource
+import kotlinx.coroutines.flow.Flow
 
 class HomeViewModel constructor(
-    private val fetchMarvelCharacter: FetchMarvelCharacter
+    private val charactersPagingSource: CharactersPagingSource
 ): ViewModel() {
 
-    private var job: Job? = null
-    private val exceptionHandler = CoroutineExceptionHandler { _ , throwable ->
-        Log.e("NM","Exception: ${throwable.stackTrace}")
-    }
+    val items: Flow<PagingData<MarvelCharacter>> = Pager(
+        config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
+        pagingSourceFactory = { charactersPagingSource }
+    )
+        .flow
+        .cachedIn(viewModelScope)
 
-    fun fetchCharacters(){
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = fetchMarvelCharacter.request()
-            withContext(Dispatchers.Main) {
-                if(response.isSuccessful) {
-                    Log.e("NN", "isSuccessful")
-                } else {
-                    Log.e("NN", "ERRO ${response.message()}}")
-                }
-            }
-        }
+    companion object {
+        private const val ITEMS_PER_PAGE = 10
     }
 
 }
