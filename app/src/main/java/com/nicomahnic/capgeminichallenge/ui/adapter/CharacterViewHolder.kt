@@ -4,14 +4,14 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nicomahnic.capgeminichallenge.databinding.ItemCharacterBinding
-import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import com.nicomahnic.capgeminichallenge.utils.Utils
 
 class CharacterViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     private var binding = ItemCharacterBinding.bind(view)
 
-    fun render(character: MarvelCharacter, onClickListener: CharacterAdapter.ItemListener){
+    fun render(character: MarvelItem, onClickListener: CharacterAdapter.ItemListener){
         binding.tvName.text = character.name
 
         val url = Utils.performUls(character)

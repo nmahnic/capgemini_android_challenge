@@ -9,13 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
-import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import com.nicomahnic.capgeminichallenge.ui.adapter.CharacterAdapter
 import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -52,7 +50,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private val onItemSelected = object :  CharacterAdapter.ItemListener {
-        override fun onBtnClick(character: MarvelCharacter) {
+        override fun onBtnClick(character: MarvelItem) {
             Log.d("NM", "character -> $character")
             val action = HomeFragmentDirections.actionHomeFragmentToDescriptionFragment(character)
             findNavController().navigate(action)

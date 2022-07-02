@@ -32,10 +32,24 @@ android {
             buildConfigField "String", "BASE_URL_MARVERL", "\"https://gateway.marvel.com/\""
             buildConfigField "String", "MARVEL_API_KEY", MARVEL_API_KEY
             buildConfigField "String", "MARVEL_PRIVATE_KEY", MARVEL_PRIVATE_KEY
+
+            applicationIdSuffix ".debug"
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "application"
+    productFlavors {
+        characters {
+            applicationIdSuffix ".characters"
+            buildConfigField "String", "ENDPOINT", "\"v1/public/characters\""
+        }
+        comics {
+            applicationIdSuffix ".comics"
+            buildConfigField "String", "ENDPOINT", "\"v1/public/comics\""
         }
     }
 
