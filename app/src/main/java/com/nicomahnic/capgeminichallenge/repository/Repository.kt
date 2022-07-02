@@ -18,6 +18,6 @@ class Repository constructor(
         ).flow
 
     companion object {
-        const val ITEMS_PER_PAGE = 30
+        const val ITEMS_PER_PAGE = 15
     }
 }

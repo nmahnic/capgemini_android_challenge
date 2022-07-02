@@ -21,6 +21,7 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
         binding = FragmentDescriptionBinding.bind(view)
 
         binding.tvCharacterName.text = args.character.name
+        binding.tvReleased.text = "${getString(R.string.modified)} ${Utils.parseModifiedDate(args.character.modified)}"
 
         val url = Utils.performUls(args.character)
         Glide.with(this).load(url).centerCrop().into(binding.imgBackgroud)
