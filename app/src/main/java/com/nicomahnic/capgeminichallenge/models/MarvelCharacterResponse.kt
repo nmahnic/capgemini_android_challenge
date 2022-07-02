@@ -24,6 +24,8 @@ data class MarvelCharacter (
     val id: Int?,
     @SerializedName("name")
     val name: String?,
+    @SerializedName("modified")
+    val modified: String?,
     @SerializedName("thumbnail")
     val thumbnail: Marvelthumbnail?
 ) : Parcelable

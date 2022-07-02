@@ -19,7 +19,9 @@ class CapgeminiChallengeApp : Application() {
                 ViewModelsModule.modules,
                 Api.apiModule,
                 Api.networkModule,
-                Repositories.repositoryModule
+                Api.pagingModule,
+                Repositories.repositoryModule,
+                Repositories.dataSourceModule,
             ))
         }
     }

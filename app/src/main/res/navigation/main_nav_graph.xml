@@ -18,5 +18,9 @@
         android:id="@+id/descriptionFragment"
         android:name="com.nicomahnic.capgeminichallenge.ui.DescriptionFragment"
         android:label="fragment_description"
-        tools:layout="@layout/fragment_description" />
+        tools:layout="@layout/fragment_description" >
+        <argument
+            android:name="character"
+            app:argType="com.nicomahnic.capgeminichallenge.models.MarvelCharacter" />
+    </fragment>
 </navigation>

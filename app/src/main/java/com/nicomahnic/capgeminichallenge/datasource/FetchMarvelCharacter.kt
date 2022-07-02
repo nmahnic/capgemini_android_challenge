@@ -1,4 +1,4 @@
-package com.nicomahnic.capgeminichallenge.repository
+package com.nicomahnic.capgeminichallenge.datasource
 
 import com.nicomahnic.capgeminichallenge.BuildConfig
 import com.nicomahnic.capgeminichallenge.api.MarvelService

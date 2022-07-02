@@ -30,16 +30,15 @@
         android:id="@+id/tvCharacterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="Character Name"
-        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
     <TextView
         android:id="@+id/tv_released"
@@ -49,7 +48,7 @@
         android:layout_marginBottom="10dp"
         android:drawablePadding="8dp"
         android:gravity="center"
-        android:text="Released 16/03/2010"
+        android:text="Modified: 16/03/2010"
         android:textColor="@color/white"
         app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
         app:drawableTint="@color/white"

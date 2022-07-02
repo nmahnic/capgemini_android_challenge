@@ -1,30 +1,37 @@
 package com.nicomahnic.capgeminichallenge.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.nicomahnic.capgeminichallenge.repository.FetchMarvelCharacter
-import kotlinx.coroutines.*
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.filter
+import com.nicomahnic.capgeminichallenge.models.MarvelCharacter
+import com.nicomahnic.capgeminichallenge.repository.Repository
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class HomeViewModel constructor(
-    private val fetchMarvelCharacter: FetchMarvelCharacter
+    private val repository: Repository
 ): ViewModel() {
 
-    private var job: Job? = null
-    private val exceptionHandler = CoroutineExceptionHandler { _ , throwable ->
-        Log.e("NM","Exception: ${throwable.stackTrace}")
-    }
+    private val _state = MutableStateFlow(ViewModelState())
+    val state: StateFlow<ViewModelState> get() = _state
 
-    fun fetchCharacters(){
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = fetchMarvelCharacter.request()
-            withContext(Dispatchers.Main) {
-                if(response.isSuccessful) {
-                    Log.e("NN", "isSuccessful")
-                } else {
-                    Log.e("NN", "ERRO ${response.message()}}")
-                }
+    init {
+        viewModelScope.launch {
+            repository.getCharacters()
+                .cachedIn(viewModelScope)
+                .collectLatest { characters ->
+                _state.value = ViewModelState(
+                    characters,
+                    false
+                )
             }
         }
     }
-
 }
+
+data class ViewModelState(
+    val data: PagingData<MarvelCharacter>? = null,
+    val spinner: Boolean = true,
+)
