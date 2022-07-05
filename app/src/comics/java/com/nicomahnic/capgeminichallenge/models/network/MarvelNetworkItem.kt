@@ -1,11 +1,13 @@
-package com.nicomahnic.capgeminichallenge.models
+package com.nicomahnic.capgeminichallenge.models.network
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.nicomahnic.capgeminichallenge.datasource.network.models.MarvelNetworkThumbnail
+import com.nicomahnic.capgeminichallenge.models.MarvelThumbnail
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MarvelItem (
+data class MarvelNetworkItem (
     @SerializedName("id")
     val id: Int?,
     @SerializedName("title")
@@ -13,7 +15,7 @@ data class MarvelItem (
     @SerializedName("modified")
     val modified: String?,
     @SerializedName("thumbnail")
-    val thumbnail: Marvelthumbnail?
+    val thumbnail: MarvelNetworkThumbnail?
 ) : Parcelable
 
 

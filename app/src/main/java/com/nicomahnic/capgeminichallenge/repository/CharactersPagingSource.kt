@@ -2,12 +2,12 @@ package com.nicomahnic.capgeminichallenge.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.nicomahnic.capgeminichallenge.datasource.FetchMarvelCharacter
+import com.nicomahnic.capgeminichallenge.datasource.network.FetchMarvelApiService
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import kotlin.math.max
 
 class CharactersPagingSource constructor(
-    private val fetchMarvelCharacter: FetchMarvelCharacter
+    private val fetchMarvelApiService: FetchMarvelApiService,
 ) : PagingSource<Int, MarvelItem>() {
 
     companion object {
@@ -20,7 +20,7 @@ class CharactersPagingSource constructor(
         val start = params.key ?: STARTING_KEY
         val range = start.until(start + params.loadSize)
 
-        val characters = fetchMarvelCharacter.request(start).body()?.data?.results
+        val characters = fetchMarvelApiService.request(start)
 
         return LoadResult.Page(
             data = characters!!,

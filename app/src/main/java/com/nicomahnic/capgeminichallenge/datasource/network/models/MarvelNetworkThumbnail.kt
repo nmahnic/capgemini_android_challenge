@@ -1,11 +1,11 @@
-package com.nicomahnic.capgeminichallenge.models
+package com.nicomahnic.capgeminichallenge.datasource.network.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Marvelthumbnail (
+data class MarvelNetworkThumbnail (
     @SerializedName("path")
     val path: String?,
     @SerializedName("extension")

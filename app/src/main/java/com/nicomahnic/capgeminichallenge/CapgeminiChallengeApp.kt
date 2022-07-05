@@ -1,9 +1,10 @@
 package com.nicomahnic.capgeminichallenge
 
 import android.app.Application
-import com.nicomahnic.capgeminichallenge.di.Api
-import com.nicomahnic.capgeminichallenge.di.Repositories
-import com.nicomahnic.capgeminichallenge.di.ViewModelsModule
+import com.nicomahnic.capgeminichallenge.di.ApiModules
+import com.nicomahnic.capgeminichallenge.di.MapperModules
+import com.nicomahnic.capgeminichallenge.di.RepositoriesModules
+import com.nicomahnic.capgeminichallenge.di.ViewModelsModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,12 +17,14 @@ class CapgeminiChallengeApp : Application() {
             androidLogger()
             androidContext(this@CapgeminiChallengeApp)
             modules(listOf(
-                ViewModelsModule.modules,
-                Api.apiModule,
-                Api.networkModule,
-                Api.pagingModule,
-                Repositories.repositoryModule,
-                Repositories.dataSourceModule,
+                ViewModelsModules.modules,
+                ApiModules.apiModule,
+                ApiModules.networkModule,
+                ApiModules.pagingModule,
+                RepositoriesModules.repositoryModule,
+                RepositoriesModules.dataSourceModule,
+                MapperModules.marvelNetworkItemMapperModule,
+                MapperModules.marvelNetworkThumbnailMapper,
             ))
         }
     }

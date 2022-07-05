@@ -1,6 +1,6 @@
 package com.nicomahnic.capgeminichallenge.api
 
-import com.nicomahnic.capgeminichallenge.models.MarvelCharacterResponse
+import com.nicomahnic.capgeminichallenge.datasource.network.models.MarvelNetworkResponse
 import com.nicomahnic.capgeminichallenge.repository.Repository
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,6 +14,6 @@ interface MarvelService {
         @Query("hash") hash: String,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = Repository.ITEMS_PER_PAGE,
-    ) : Response<MarvelCharacterResponse>
+    ) : Response<MarvelNetworkResponse>
 
 }
