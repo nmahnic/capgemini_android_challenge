@@ -1,13 +1,13 @@
 package com.nicomahnic.capgeminichallenge.di
 
-import com.nicomahnic.capgeminichallenge.datasource.FetchMarvelCharacter
+import com.nicomahnic.capgeminichallenge.datasource.network.FetchMarvelApiService
 import com.nicomahnic.capgeminichallenge.repository.Repository
 import org.koin.dsl.module
 
-object Repositories {
+object RepositoriesModules {
 
     val dataSourceModule = module {
-        single { FetchMarvelCharacter( get() ) }
+        single { FetchMarvelApiService( get(), get() ) }
     }
 
     val repositoryModule = module {

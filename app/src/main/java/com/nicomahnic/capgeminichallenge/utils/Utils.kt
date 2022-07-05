@@ -8,7 +8,7 @@ import java.util.*
 
 object Utils {
 
-    fun performUls( character: MarvelItem ) : String{
+    fun performUls( character: MarvelItem) : String{
         val pathModified = character.thumbnail!!.path!!.replace("http://", "https://")
         return pathModified+"/landscape_medium."+character.thumbnail.extension
     }

@@ -9,7 +9,7 @@ import com.nicomahnic.capgeminichallenge.models.MarvelItem
 
 class CharacterAdapter(
     private val itemListener: ItemListener
-) : PagingDataAdapter<MarvelItem ,CharacterViewHolder>(ARTICLE_DIFF_CALLBACK) {
+) : PagingDataAdapter<MarvelItem,CharacterViewHolder>(ARTICLE_DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context )
