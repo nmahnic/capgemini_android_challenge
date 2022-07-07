@@ -28,9 +28,6 @@ class HomeViewModel constructor(
             }
         }
     }
+
 }
 
-data class ViewModelState(
-    val data: PagingData<MarvelItem>? = null,
-    val spinner: Boolean = true,
-)

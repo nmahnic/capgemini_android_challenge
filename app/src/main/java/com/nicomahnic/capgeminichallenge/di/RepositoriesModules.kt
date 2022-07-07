@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 object RepositoriesModules {
 
-    val dataSourceModule = module {
+    val pagingDataSourceModule = module {
         single { FetchMarvelApiService( get(), get() ) }
     }
 

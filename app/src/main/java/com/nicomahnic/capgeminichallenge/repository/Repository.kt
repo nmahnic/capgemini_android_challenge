@@ -7,7 +7,7 @@ import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import kotlinx.coroutines.flow.Flow
 
 class Repository constructor(
-    private val charactersPagingSource: CharactersPagingSource
+    private val charactersPagingSource: CharactersPagingSource,
 ) {
 
     fun getCharacters() : Flow<PagingData<MarvelItem>> = Pager(

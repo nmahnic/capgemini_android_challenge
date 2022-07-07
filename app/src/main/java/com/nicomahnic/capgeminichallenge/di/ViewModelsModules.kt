@@ -1,13 +1,18 @@
 package com.nicomahnic.capgeminichallenge.di
 
+import com.nicomahnic.capgeminichallenge.viewmodels.DescriptionViewModel
 import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object ViewModelsModules{
 
-	val modules = module {
+	val homeViewModel = module {
 		viewModel { HomeViewModel( get() ) }
+	}
+
+	val descriptionViewModel = module {
+		viewModel { DescriptionViewModel( get(), get() ) }
 	}
 
 }

@@ -1,17 +1,21 @@
 package com.nicomahnic.capgeminichallenge.di
 
+import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityThumbnailMapper
 import com.nicomahnic.capgeminichallenge.models.mapper.MarvelNetworkItemMapper
 import com.nicomahnic.capgeminichallenge.models.mapper.MarvelNetworkThumbnailMapper
 import org.koin.dsl.module
 
 object MapperModules {
 
-    val marvelNetworkItemMapperModule = module {
+    val marvelNetworkMapper = module {
+        single { MarvelNetworkThumbnailMapper( ) }
         single { MarvelNetworkItemMapper( get() ) }
     }
 
-    val marvelNetworkThumbnailMapper = module {
-        single { MarvelNetworkThumbnailMapper( ) }
+    val marvelEntityModule = module {
+        single { MarvelEntityItemMapper( get() ) }
+        single { MarvelEntityThumbnailMapper( ) }
     }
 
 }
