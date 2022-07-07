@@ -2,15 +2,13 @@ package com.nicomahnic.capgeminichallenge.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.repository.Repository
+import com.nicomahnic.capgeminichallenge.domain.GetMarvelItemsFromPagingUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class HomeViewModel constructor(
-    private val repository: Repository
+    private val getMarvelItemsFromPagingUseCase: GetMarvelItemsFromPagingUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(ViewModelState())
@@ -18,7 +16,7 @@ class HomeViewModel constructor(
 
     init {
         viewModelScope.launch {
-            repository.getCharacters()
+            getMarvelItemsFromPagingUseCase.task()
                 .cachedIn(viewModelScope)
                 .collectLatest { characters ->
                 _state.value = ViewModelState(

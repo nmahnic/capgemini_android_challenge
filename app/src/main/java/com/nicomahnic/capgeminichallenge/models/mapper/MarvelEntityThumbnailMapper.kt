@@ -1,7 +1,6 @@
 package com.nicomahnic.capgeminichallenge.models.mapper
 
 import com.nicomahnic.capgeminichallenge.datasource.database.models.MarvelThumbnailEntity
-import com.nicomahnic.capgeminichallenge.datasource.network.models.MarvelNetworkThumbnail
 import com.nicomahnic.capgeminichallenge.models.MarvelThumbnail
 
 class MarvelEntityThumbnailMapper : EntityMapper<MarvelThumbnailEntity, MarvelThumbnail> {

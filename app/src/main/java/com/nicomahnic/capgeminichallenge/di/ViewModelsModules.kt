@@ -12,7 +12,7 @@ object ViewModelsModules{
 	}
 
 	val descriptionViewModel = module {
-		viewModel { DescriptionViewModel( get(), get() ) }
+		viewModel { DescriptionViewModel( get() ) }
 	}
 
 }

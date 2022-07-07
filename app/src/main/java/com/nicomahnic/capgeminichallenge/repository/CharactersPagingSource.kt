@@ -28,7 +28,7 @@ class CharactersPagingSource constructor(
                 STARTING_KEY -> null
                 else -> ensureValidKey(key = range.first - params.loadSize)
             },
-            nextKey = range.last + Repository.ITEMS_PER_PAGE
+            nextKey = range.last + PagingRepository.ITEMS_PER_PAGE
         )
     }
 

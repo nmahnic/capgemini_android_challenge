@@ -10,6 +10,6 @@ interface MarvelItemDao {
     suspend fun insertMarvelItem(item: MarvelItemEntity) : Long
 
     @Query("SELECT * FROM MarvelItem")
-    suspend fun readAllMarvelItem(): List<MarvelItemEntity>
+    suspend fun readAllMarvelItems(): List<MarvelItemEntity>
 
 }

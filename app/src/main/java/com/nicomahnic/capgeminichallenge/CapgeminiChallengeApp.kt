@@ -22,6 +22,7 @@ class CapgeminiChallengeApp : Application() {
                 ApiModules.pagingModule,
                 RepositoriesModules.repositoryModule,
                 RepositoriesModules.pagingDataSourceModule,
+                UseCasesModules.usecases,
                 MapperModules.marvelNetworkMapper,
                 MapperModules.marvelEntityModule,
             ))

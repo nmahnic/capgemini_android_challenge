@@ -6,11 +6,11 @@ import androidx.paging.PagingData
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import kotlinx.coroutines.flow.Flow
 
-class Repository constructor(
+class PagingRepository constructor(
     private val charactersPagingSource: CharactersPagingSource,
 ) {
 
-    fun getCharacters() : Flow<PagingData<MarvelItem>> = Pager(
+    fun getItems() : Flow<PagingData<MarvelItem>> = Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
             pagingSourceFactory = { charactersPagingSource }
         ).flow

@@ -1,7 +1,6 @@
 package com.nicomahnic.capgeminichallenge.models
 
 import android.os.Parcelable
-import com.nicomahnic.capgeminichallenge.models.MarvelThumbnail
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
