@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.ui.adapter.CharacterAdapter
+import com.nicomahnic.capgeminichallenge.ui.adapter.items.ItemsAdapter
 import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel by sharedViewModel<HomeViewModel>()
 
-    private lateinit var adapter: CharacterAdapter
+    private lateinit var adapter: ItemsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,7 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
 
         binding.rvCharacters.layoutManager = LinearLayoutManager(requireContext())
-        adapter  = CharacterAdapter(onItemSelected)
+        adapter  = ItemsAdapter(onItemSelected)
         binding.rvCharacters.adapter = adapter
 
         lifecycleScope.launch{
@@ -46,7 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    private val onItemSelected = object :  CharacterAdapter.ItemListener {
+    private val onItemSelected = object :  ItemsAdapter.ItemListener {
         override fun onBtnClick(character: MarvelItem) {
             Log.d("NM", "character -> $character")
             val action = HomeFragmentDirections.actionHomeFragmentToDescriptionFragment(character)

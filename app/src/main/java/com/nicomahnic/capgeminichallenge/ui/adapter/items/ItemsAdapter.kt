@@ -1,4 +1,4 @@
-package com.nicomahnic.capgeminichallenge.ui.adapter
+package com.nicomahnic.capgeminichallenge.ui.adapter.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
 
-class CharacterAdapter(
+class ItemsAdapter(
     private val itemListener: ItemListener
-) : PagingDataAdapter<MarvelItem,CharacterViewHolder>(ARTICLE_DIFF_CALLBACK) {
+) : PagingDataAdapter<MarvelItem, ItemsViewHolder>(ARTICLE_DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context )
-        return CharacterViewHolder(layoutInflater.inflate(R.layout.item_marvel_item, parent, false), )
+        return ItemsViewHolder(layoutInflater.inflate(R.layout.item_marvel_item, parent, false), )
     }
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         val item = getItem(position)
         item?.let { holder.render(it, itemListener) }
     }

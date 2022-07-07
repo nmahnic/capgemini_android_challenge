@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/imgCharacter"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 android:transitionName="image"
                 app:layout_constraintBottom_toBottomOf="parent"
