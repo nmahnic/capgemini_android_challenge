@@ -18,5 +18,14 @@
         android:id="@+id/descriptionFragment"
         android:name="com.nicomahnic.capgeminichallenge.ui.DescriptionFragment"
         android:label="fragment_description"
-        tools:layout="@layout/fragment_description" />
+        tools:layout="@layout/fragment_description" >
+        <argument
+            android:name="item"
+            app:argType="com.nicomahnic.capgeminichallenge.models.MarvelItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.nicomahnic.capgeminichallenge.ui.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
 </navigation>
