@@ -8,11 +8,13 @@ import com.bumptech.glide.Glide
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentDescriptionBinding
 import com.nicomahnic.capgeminichallenge.utils.Utils
+import com.nicomahnic.capgeminichallenge.viewmodels.DescriptionViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DescriptionFragment : Fragment(R.layout.fragment_description) {
 
     private lateinit var binding: FragmentDescriptionBinding
-
+    private val viewModel by viewModel<DescriptionViewModel>()
     private val args: DescriptionFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,6 +27,8 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
 
         val url = Utils.performUls(args.item)
         Glide.with(this).load(url).centerCrop().into(binding.imgBackgroud)
+
+        viewModel.insertMarvelItem(args.item)
 
     }
 }
