@@ -14,12 +14,13 @@ import com.nicomahnic.capgeminichallenge.ui.adapter.CharacterAdapter
 import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModel<HomeViewModel>()
+    private val viewModel by sharedViewModel<HomeViewModel>()
 
     private lateinit var adapter: CharacterAdapter
 
@@ -31,10 +32,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.rvCharacters.layoutManager = LinearLayoutManager(requireContext())
         adapter  = CharacterAdapter(onItemSelected)
         binding.rvCharacters.adapter = adapter
-
-        binding.btnFetch.setOnClickListener {
-            Log.e("NM", "btnFetch.setOnClickListener")
-        }
 
         lifecycleScope.launch{
             viewModel.state.collectLatest { state ->
