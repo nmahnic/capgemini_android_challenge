@@ -13,7 +13,7 @@ class CharacterAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context )
-        return CharacterViewHolder(layoutInflater.inflate(R.layout.item_character, parent, false), )
+        return CharacterViewHolder(layoutInflater.inflate(R.layout.item_marvel_item, parent, false), )
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
