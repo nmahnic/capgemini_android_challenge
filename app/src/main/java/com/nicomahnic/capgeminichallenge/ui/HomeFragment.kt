@@ -35,7 +35,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         lifecycleScope.launch{
             viewModel.state.collectLatest { state ->
-                Log.e("NM", "STATE -> ${state}")
                 state.data?.let { characters ->
                     Log.e("NM", "SPINNER -> ${state.spinner} ${state.data}")
                     binding.progress.visibility = if (state.spinner) View.VISIBLE else View.GONE
@@ -48,7 +47,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val onItemSelected = object :  ItemsAdapter.ItemListener {
         override fun onBtnClick(character: MarvelItem) {
-            Log.d("NM", "character -> $character")
             val action = HomeFragmentDirections.actionHomeFragmentToDescriptionFragment(character)
             findNavController().navigate(action)
         }

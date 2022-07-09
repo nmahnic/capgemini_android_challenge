@@ -15,9 +15,7 @@ class InsertMarvelItemToDBUseCase(
             localRepository.insertMarvelItem(it)
 
             val res = localRepository.readAllMarvelItems()
-            Log.e("NM", "RES -> $res")
             val allItems = marvelEntityItemMapper.mapFromEntityList(res)
-            Log.e("NM", "ALLITEMS -> $allItems")
         }
     }
 
