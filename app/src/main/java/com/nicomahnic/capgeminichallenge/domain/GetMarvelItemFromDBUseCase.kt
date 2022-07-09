@@ -11,9 +11,9 @@ class GetMarvelItemFromDBUseCase(
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend fun task(id: Int): Flow<MarvelItem?> = flow {
+    suspend fun task(id: Int): MarvelItem? {
         val res = localRepository.getMarvelItem(id)
-        emit ( marvelEntityItemMapper.mapFromEntity(res) )
+        return marvelEntityItemMapper.mapFromEntity(res)
     }
 
 }

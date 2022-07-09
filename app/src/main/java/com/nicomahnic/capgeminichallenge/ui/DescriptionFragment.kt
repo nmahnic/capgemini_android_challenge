@@ -32,10 +32,7 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
 
         viewModel.exitsMarvelItem(args.item) {
             favouriteState = it
-            if(favouriteState)
-                binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
-            else
-                binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+            if(favouriteState) checkHeart() else uncheckHeart()
         }
 
         binding.itemFavourite.setOnClickListener {
@@ -45,14 +42,22 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
 
     }
 
-    private fun saveMarvelItem() {
-        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+    private fun unsaveMarvelItem() {
+        uncheckHeart()
         viewModel.deleteMarvelItem(args.item)
     }
 
-    private fun unsaveMarvelItem() {
-        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+    private fun saveMarvelItem() {
+        checkHeart()
         viewModel.insertMarvelItem(args.item)
+    }
+
+    private fun uncheckHeart() {
+        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+    }
+
+    private fun checkHeart() {
+        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
     }
 
 }

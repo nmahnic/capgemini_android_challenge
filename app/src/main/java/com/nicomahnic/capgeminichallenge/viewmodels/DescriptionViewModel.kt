@@ -8,6 +8,7 @@ import com.nicomahnic.capgeminichallenge.domain.InsertMarvelItemToDBUseCase
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DescriptionViewModel constructor(
     private val insertMarvelItemToDBUseCase: InsertMarvelItemToDBUseCase,
@@ -29,11 +30,12 @@ class DescriptionViewModel constructor(
 
     fun exitsMarvelItem(marvelItem: MarvelItem, action: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            marvelItem.id?.let{
-                getMarvelItemFromDBUseCase.task(marvelItem.id).collect {
-                    it?.let { action(true) } ?: run { action(false) }
-                }
-            } ?: run { run { action(false) } }
+            withContext(Dispatchers.Main) {
+                marvelItem.id?.let { getMarvelItemFromDBUseCase.task(marvelItem.id)
+                    ?.let { action(true) }
+                    ?: run { action(false) }
+                } ?: run { run { action(false) } }
+            }
         }
     }
 
