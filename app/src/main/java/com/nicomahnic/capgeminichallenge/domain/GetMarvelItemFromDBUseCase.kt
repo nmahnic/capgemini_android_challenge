@@ -15,4 +15,5 @@ class GetMarvelItemFromDBUseCase(
         val res = localRepository.getMarvelItem(id)
         emit ( marvelEntityItemMapper.mapFromEntity(res) )
     }
+
 }

@@ -10,8 +10,8 @@ class DeleteMarvelItemFromDBUseCase(
 ) {
 
     suspend fun task(marvelItem: MarvelItem){
-            marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
-                localRepository.deleteMarvelItem(it)
-            }
+        marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
+            localRepository.deleteMarvelItem(it)
         }
     }
+}
