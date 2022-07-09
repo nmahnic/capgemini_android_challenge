@@ -6,14 +6,14 @@ import com.nicomahnic.capgeminichallenge.repository.LocalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetFavouriteMarvelItemsFromDBUseCase(
+class GetMarvelItemFromDBUseCase(
     private val localRepository: LocalRepository,
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend operator fun invoke(): Flow<List<MarvelItem?>?> = flow {
-        val res = localRepository.readAllMarvelItems()
-        emit ( marvelEntityItemMapper.mapFromEntityList(res) )
+    suspend operator fun invoke(id: Int? = null): MarvelItem? {
+        val res = localRepository.getMarvelItem(id)
+        return marvelEntityItemMapper.mapFromEntity(res)
     }
 
 }

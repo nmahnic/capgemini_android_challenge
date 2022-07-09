@@ -3,17 +3,15 @@ package com.nicomahnic.capgeminichallenge.domain
 import com.nicomahnic.capgeminichallenge.models.MarvelItem
 import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
 import com.nicomahnic.capgeminichallenge.repository.LocalRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
-class GetFavouriteMarvelItemsFromDBUseCase(
+class DeleteMarvelItemFromDBUseCase(
     private val localRepository: LocalRepository,
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend operator fun invoke(): Flow<List<MarvelItem?>?> = flow {
-        val res = localRepository.readAllMarvelItems()
-        emit ( marvelEntityItemMapper.mapFromEntityList(res) )
+    suspend operator fun invoke(marvelItem: MarvelItem){
+        marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
+            localRepository.deleteMarvelItem(it)
+        }
     }
-
 }

@@ -17,6 +17,8 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
     private val viewModel by viewModel<DescriptionViewModel>()
     private val args: DescriptionFragmentArgs by navArgs()
 
+    private var favouriteState: Boolean = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,7 +30,34 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
         val url = Utils.performUls(args.item)
         Glide.with(this).load(url).centerCrop().into(binding.imgBackgroud)
 
-        viewModel.insertMarvelItem(args.item)
+        viewModel.exitsMarvelItem(args.item) {
+            favouriteState = it
+            if(favouriteState) checkHeart() else uncheckHeart()
+        }
+
+        binding.itemFavourite.setOnClickListener {
+            favouriteState = !favouriteState
+            if(favouriteState) saveMarvelItem() else unsaveMarvelItem()
+        }
 
     }
+
+    private fun unsaveMarvelItem() {
+        uncheckHeart()
+        viewModel.deleteMarvelItem(args.item)
+    }
+
+    private fun saveMarvelItem() {
+        checkHeart()
+        viewModel.insertMarvelItem(args.item)
+    }
+
+    private fun uncheckHeart() {
+        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+    }
+
+    private fun checkHeart() {
+        binding.imgFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+    }
+
 }

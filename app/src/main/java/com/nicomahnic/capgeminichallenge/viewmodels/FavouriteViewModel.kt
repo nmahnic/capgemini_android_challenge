@@ -7,7 +7,6 @@ class FavouriteViewModel constructor(
     private val getFavouriteMarvelItemsFromDBUseCase: GetFavouriteMarvelItemsFromDBUseCase,
 ): ViewModel() {
 
-    suspend fun getFavouriteMarvelItems() =
-        getFavouriteMarvelItemsFromDBUseCase.task()
+    suspend fun getFavouriteMarvelItems() = getFavouriteMarvelItemsFromDBUseCase()
 
 }

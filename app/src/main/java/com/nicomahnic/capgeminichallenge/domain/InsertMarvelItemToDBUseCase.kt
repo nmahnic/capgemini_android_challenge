@@ -10,14 +10,13 @@ class InsertMarvelItemToDBUseCase(
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend fun task(marvelItem: MarvelItem){
-            marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
-                localRepository.insertMarvelItem(it)
+    suspend operator fun invoke(marvelItem: MarvelItem){
+        marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
+            localRepository.insertMarvelItem(it)
 
-                val res = localRepository.readAllMarvelItems()
-                Log.e("NM", "RES -> $res")
-                val allItems = marvelEntityItemMapper.mapFromEntityList(res)
-                Log.e("NM", "ALLITEMS -> $allItems")
-            }
+            val res = localRepository.readAllMarvelItems()
+            val allItems = marvelEntityItemMapper.mapFromEntityList(res)
         }
     }
+
+}
