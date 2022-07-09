@@ -9,9 +9,7 @@ import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityThumbnailMapp
 import com.nicomahnic.capgeminichallenge.repository.LocalRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -59,6 +57,23 @@ class GetMarvelItemFromDBUseCaseTest {
         //Then
         val marvelThumbnail = MarvelThumbnail("Path", "jpg")
         val marvelItem = MarvelItem(1, "Test1","Test1", marvelThumbnail)
+        assert( marvelEntityItemMapper.mapFromEntity(marvelItemEntity) == marvelItem)
+
+    }
+
+    @Test
+    fun `when VM pass id 1 then return incomplete MarvelItem parsed`() = runBlocking {
+        //Given
+        val marvelThumbnailEntity = MarvelThumbnailEntity("Path", "jpg")
+        val marvelItemEntity = MarvelItemEntity(1, "Test1",null, marvelThumbnailEntity)
+        coEvery { localRepository.getMarvelItem() } returns marvelItemEntity
+
+        //When
+        getMarvelItemFromDBUseCase(1)
+
+        //Then
+        val marvelThumbnail = MarvelThumbnail("Path", "jpg")
+        val marvelItem = MarvelItem(1, "Test1",null, marvelThumbnail)
         assert( marvelEntityItemMapper.mapFromEntity(marvelItemEntity) == marvelItem)
 
     }
