@@ -6,7 +6,7 @@ class GetMarvelItemsFromPagingUseCase(
     private val pagingRepository: PagingRepository
 ) {
 
-    fun task() = pagingRepository.getItems()
+    operator fun invoke() = pagingRepository.getItems()
 
 }
 

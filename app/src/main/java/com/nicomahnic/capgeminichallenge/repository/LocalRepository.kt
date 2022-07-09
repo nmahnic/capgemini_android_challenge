@@ -15,7 +15,7 @@ class LocalRepository constructor(
         marvelItemDao.deleteMarvelItem(marvelItemEntity)
     }
 
-    suspend fun getMarvelItem(id: Int) = marvelItemDao.getMarvelItem(id)
+    suspend fun getMarvelItem(id: Int? = null) = id?.let { marvelItemDao.getMarvelItem(id) }
 
     suspend fun readAllMarvelItems() = marvelItemDao.readAllMarvelItems()
 

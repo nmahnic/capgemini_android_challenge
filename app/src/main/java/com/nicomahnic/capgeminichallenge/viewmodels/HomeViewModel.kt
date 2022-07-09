@@ -16,7 +16,7 @@ class HomeViewModel constructor(
 
     init {
         viewModelScope.launch {
-            getMarvelItemsFromPagingUseCase.task()
+            getMarvelItemsFromPagingUseCase()
                 .cachedIn(viewModelScope)
                 .collectLatest { characters ->
                 _state.value = ViewModelState(

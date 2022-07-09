@@ -18,20 +18,20 @@ class DescriptionViewModel constructor(
 
     fun insertMarvelItem(marvelItem: MarvelItem){
         viewModelScope.launch(Dispatchers.IO) {
-            insertMarvelItemToDBUseCase.task(marvelItem)
+            insertMarvelItemToDBUseCase(marvelItem)
         }
     }
 
     fun deleteMarvelItem(marvelItem: MarvelItem){
         viewModelScope.launch(Dispatchers.IO) {
-            deleteMarvelItemFromDBUseCase.task(marvelItem)
+            deleteMarvelItemFromDBUseCase(marvelItem)
         }
     }
 
     fun exitsMarvelItem(marvelItem: MarvelItem, action: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                marvelItem.id?.let { getMarvelItemFromDBUseCase.task(marvelItem.id)
+                marvelItem.id?.let { getMarvelItemFromDBUseCase(marvelItem.id)
                     ?.let { action(true) }
                     ?: run { action(false) }
                 } ?: run { run { action(false) } }

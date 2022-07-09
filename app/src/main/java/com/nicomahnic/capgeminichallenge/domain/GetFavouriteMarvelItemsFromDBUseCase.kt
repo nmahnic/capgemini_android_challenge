@@ -11,7 +11,7 @@ class GetFavouriteMarvelItemsFromDBUseCase(
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend fun task(): Flow<List<MarvelItem?>?> = flow {
+    suspend operator fun invoke(): Flow<List<MarvelItem?>?> = flow {
         val res = localRepository.readAllMarvelItems()
         emit ( marvelEntityItemMapper.mapFromEntityList(res) )
     }

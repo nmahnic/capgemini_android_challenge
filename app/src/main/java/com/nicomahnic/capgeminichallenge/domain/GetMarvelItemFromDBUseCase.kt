@@ -11,7 +11,7 @@ class GetMarvelItemFromDBUseCase(
     private val marvelEntityItemMapper: MarvelEntityItemMapper
 ) {
 
-    suspend fun task(id: Int): MarvelItem? {
+    suspend operator fun invoke(id: Int? = null): MarvelItem? {
         val res = localRepository.getMarvelItem(id)
         return marvelEntityItemMapper.mapFromEntity(res)
     }
