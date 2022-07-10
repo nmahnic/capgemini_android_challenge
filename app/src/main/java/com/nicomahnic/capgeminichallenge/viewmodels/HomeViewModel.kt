@@ -12,19 +12,19 @@ class HomeViewModel constructor(
 ): ViewModel() {
 
     private val _state = MutableStateFlow(ViewModelState())
-    val state: StateFlow<ViewModelState> get() = _state
+    var state: StateFlow<ViewModelState> get() = _state
+        set(value) {state = value}
 
     init {
         viewModelScope.launch {
             getMarvelItemsFromPagingUseCase()
                 .cachedIn(viewModelScope)
-                .collectLatest { characters ->
-                _state.value = ViewModelState(
-                    characters,
-                    false
-                )
-            }
+                .collectLatest { items -> _state.value = ViewModelState(items) }
         }
+    }
+
+    fun notLoading(state: ViewModelState){
+        viewModelScope.launch { _state.value = state }
     }
 
 }
