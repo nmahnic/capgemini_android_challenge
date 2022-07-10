@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
@@ -15,7 +16,6 @@ import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -33,13 +33,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter  = ItemsAdapter(onItemSelected)
         binding.rvCharacters.adapter = adapter
 
-        lifecycleScope.launch{
+
+        lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
                 state.data?.let { characters ->
-                    Log.e("NM", "SPINNER -> ${state.spinner} ${state.data}")
-                    binding.progress.visibility = if (state.spinner) View.VISIBLE else View.GONE
+                    binding.rvLoading.visibility = if (state.spinner) View.VISIBLE else View.GONE
                     adapter.submitData(characters)
                 }
+            }
+        }
+
+        adapter.addLoadStateListener {
+            Log.d("NM", "addLoadStateListener -> $it")
+            when(it.source.refresh){
+                is LoadState.Error -> {}
+                is LoadState.NotLoading -> { viewModel.notLoading( viewModel.state.value.copy(spinner = false) ) }
+                is LoadState.Loading -> {}
             }
         }
 
