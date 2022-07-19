@@ -1,4 +1,4 @@
-# CapgeminiChallenge
+# Challenge
 
 ### Some technologies implemented:
 - :white_check_mark: - MVVM and Clean Architecture
@@ -11,7 +11,6 @@
 - :white_check_mark: - Use Dependency Injection (Hilt or Koin)
 - :white_check_mark: - Jetpack Navigation Framework
 - :white_check_mark: - Testing
-- :x: - Multi-modules
 
 ### Marvel Characters App
 The app was compiled with Characters flavor
