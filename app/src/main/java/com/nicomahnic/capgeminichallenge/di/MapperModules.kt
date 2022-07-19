@@ -1,9 +1,9 @@
 package com.nicomahnic.capgeminichallenge.di
 
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityThumbnailMapper
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelNetworkItemMapper
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelNetworkThumbnailMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityThumbnailMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelNetworkItemMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelNetworkThumbnailMapper
 import org.koin.dsl.module
 
 object MapperModules {

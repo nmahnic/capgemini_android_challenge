@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.nicomahnic.capgeminichallenge.R
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
 
 class ItemsAdapter(
     private val itemListener: ItemListener

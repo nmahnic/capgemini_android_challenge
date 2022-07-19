@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentFavouriteBinding
 import com.nicomahnic.capgeminichallenge.ui.adapter.favourites.FavouritesAdapter
-import com.nicomahnic.capgeminichallenge.viewmodels.FavouriteViewModel
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.FavouriteViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

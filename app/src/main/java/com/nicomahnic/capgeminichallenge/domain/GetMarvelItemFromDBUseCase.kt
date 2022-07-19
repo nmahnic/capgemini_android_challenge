@@ -1,19 +1,26 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.repository.LocalRepository
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
 class GetMarvelItemFromDBUseCase(
-    private val localRepository: LocalRepository,
+    private val marvelItemsRepository: MarvelItemsRepositoryImpl,
     private val marvelEntityItemMapper: MarvelEntityItemMapper
-) {
+) : UseCases {
 
-    suspend operator fun invoke(id: Int? = null): MarvelItem? {
-        val res = localRepository.getMarvelItem(id)
+    override suspend operator fun invoke(id: Int?): MarvelItem? {
+        val res = marvelItemsRepository.getMarvelItem(id)
         return marvelEntityItemMapper.mapFromEntity(res)
+    }
+
+    override suspend fun invoke(): Flow<Any?> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun invoke(marvelItem: MarvelItem) {
+        TODO("Not yet implemented")
     }
 
 }

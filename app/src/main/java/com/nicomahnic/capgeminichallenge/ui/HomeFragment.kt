@@ -10,9 +10,9 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentHomeBinding
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
 import com.nicomahnic.capgeminichallenge.ui.adapter.items.ItemsAdapter
-import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

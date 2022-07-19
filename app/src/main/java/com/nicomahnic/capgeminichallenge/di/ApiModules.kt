@@ -2,7 +2,7 @@ package com.nicomahnic.capgeminichallenge.di
 
 import com.nicomahnic.capgeminichallenge.BuildConfig
 import com.nicomahnic.capgeminichallenge.api.MarvelService
-import com.nicomahnic.capgeminichallenge.repository.CharactersPagingSource
+import com.nicomahnic.capgeminichallenge.data.repository.CharactersPagingSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

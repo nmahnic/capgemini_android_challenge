@@ -1,12 +1,12 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.datasource.database.models.MarvelItemEntity
-import com.nicomahnic.capgeminichallenge.datasource.database.models.MarvelThumbnailEntity
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.models.MarvelThumbnail
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityThumbnailMapper
-import com.nicomahnic.capgeminichallenge.repository.LocalRepository
+import com.nicomahnic.capgeminichallenge.data.datasource.database.models.MarvelItemEntity
+import com.nicomahnic.capgeminichallenge.data.datasource.database.models.MarvelThumbnailEntity
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelThumbnail
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityThumbnailMapper
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
@@ -17,7 +17,7 @@ import org.junit.Test
 class DeleteMarvelItemFromDBUseCaseTest{
 
     @RelaxedMockK
-    private lateinit var localRepository: LocalRepository
+    private lateinit var marvelItemsRepository: MarvelItemsRepositoryImpl
 
     private lateinit var marvelEntityItemMapper: MarvelEntityItemMapper
     private lateinit var marvelEntityThumbnailMapper: MarvelEntityThumbnailMapper
@@ -28,7 +28,7 @@ class DeleteMarvelItemFromDBUseCaseTest{
         MockKAnnotations.init(this)
         marvelEntityThumbnailMapper = MarvelEntityThumbnailMapper()
         marvelEntityItemMapper = MarvelEntityItemMapper(marvelEntityThumbnailMapper)
-        deleteMarvelItemFromDBUseCaseTest = DeleteMarvelItemFromDBUseCase(localRepository, marvelEntityItemMapper)
+        deleteMarvelItemFromDBUseCaseTest = DeleteMarvelItemFromDBUseCase(marvelItemsRepository, marvelEntityItemMapper)
     }
 
     @Test
@@ -43,7 +43,7 @@ class DeleteMarvelItemFromDBUseCaseTest{
         deleteMarvelItemFromDBUseCaseTest(marvelItem)
 
         //Then
-        coVerify { localRepository.deleteMarvelItem(marvelItemEntity) }
+        coVerify { marvelItemsRepository.deleteMarvelItem(marvelItemEntity) }
         assert ( marvelEntityItemMapper.mapToEntity(marvelItem) == marvelItemEntity)
 
     }
