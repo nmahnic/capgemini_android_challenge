@@ -1,21 +1,14 @@
 package com.nicomahnic.capgeminichallenge.domain
 
+import androidx.paging.PagingData
 import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
 import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
 
 class GetMarvelItemsFromPagingUseCase(
     private val marvelItemsRepository: MarvelItemsRepositoryImpl
-) : UseCases {
+) : UseCasesReturnFlow<PagingData<MarvelItem>> {
 
     override suspend operator fun invoke() = marvelItemsRepository.getItems()
-
-    override suspend fun invoke(marvelItem: MarvelItem) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun invoke(id: Int?): MarvelItem? {
-        TODO("Not yet implemented")
-    }
 
 }
 
