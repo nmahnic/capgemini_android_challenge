@@ -1,17 +1,18 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.repository.LocalRepository
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
 
 class DeleteMarvelItemFromDBUseCase(
-    private val localRepository: LocalRepository,
+    private val marvelItemsRepository: MarvelItemsRepositoryImpl,
     private val marvelEntityItemMapper: MarvelEntityItemMapper
-) {
+) : UseCasesNotReturn<MarvelItem> {
 
-    suspend operator fun invoke(marvelItem: MarvelItem){
-        marvelEntityItemMapper.mapToEntity(marvelItem)?.let {
-            localRepository.deleteMarvelItem(it)
+    override suspend operator fun invoke(entity: MarvelItem){
+        marvelEntityItemMapper.mapToEntity(entity)?.let {
+            marvelItemsRepository.deleteMarvelItem(it)
         }
     }
+
 }

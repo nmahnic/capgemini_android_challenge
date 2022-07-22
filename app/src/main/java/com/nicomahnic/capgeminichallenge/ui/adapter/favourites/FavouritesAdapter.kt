@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.capgeminichallenge.R
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
 
 class FavouritesAdapter(
     private var itemsList: List<MarvelItem?>?

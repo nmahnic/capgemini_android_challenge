@@ -1,8 +1,8 @@
 package com.nicomahnic.capgeminichallenge.di
 
 import androidx.room.Room
-import com.nicomahnic.capgeminichallenge.datasource.database.ApplicationDatabase
-import com.nicomahnic.capgeminichallenge.datasource.database.MarvelItemDao
+import com.nicomahnic.capgeminichallenge.data.datasource.database.ApplicationDatabase
+import com.nicomahnic.capgeminichallenge.data.datasource.database.MarvelItemDao
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

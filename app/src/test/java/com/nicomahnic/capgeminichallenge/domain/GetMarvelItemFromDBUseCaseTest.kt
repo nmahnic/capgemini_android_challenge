@@ -1,12 +1,12 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.datasource.database.models.MarvelItemEntity
-import com.nicomahnic.capgeminichallenge.datasource.database.models.MarvelThumbnailEntity
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.models.MarvelThumbnail
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityThumbnailMapper
-import com.nicomahnic.capgeminichallenge.repository.LocalRepository
+import com.nicomahnic.capgeminichallenge.data.datasource.database.models.MarvelItemEntity
+import com.nicomahnic.capgeminichallenge.data.datasource.database.models.MarvelThumbnailEntity
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelThumbnail
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityThumbnailMapper
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
@@ -17,7 +17,7 @@ import org.junit.Test
 class GetMarvelItemFromDBUseCaseTest {
 
     @RelaxedMockK
-    private lateinit var localRepository: LocalRepository
+    private lateinit var marvelItemsRepository: MarvelItemsRepositoryImpl
 
     private lateinit var marvelEntityItemMapper: MarvelEntityItemMapper
     private lateinit var marvelEntityThumbnailMapper: MarvelEntityThumbnailMapper
@@ -28,13 +28,13 @@ class GetMarvelItemFromDBUseCaseTest {
         MockKAnnotations.init(this)
         marvelEntityThumbnailMapper = MarvelEntityThumbnailMapper()
         marvelEntityItemMapper = MarvelEntityItemMapper(marvelEntityThumbnailMapper)
-        getMarvelItemFromDBUseCase = GetMarvelItemFromDBUseCase(localRepository, marvelEntityItemMapper)
+        getMarvelItemFromDBUseCase = GetMarvelItemFromDBUseCase(marvelItemsRepository, marvelEntityItemMapper)
     }
 
     @Test
     fun `when VM doesnt pass any id then return null`() = runBlocking {
         //Given
-        coEvery { localRepository.getMarvelItem() } returns null
+        coEvery { marvelItemsRepository.getMarvelItem() } returns null
 
         //When
         getMarvelItemFromDBUseCase()
@@ -49,7 +49,7 @@ class GetMarvelItemFromDBUseCaseTest {
         //Given
         val marvelThumbnailEntity = MarvelThumbnailEntity("Path", "jpg")
         val marvelItemEntity = MarvelItemEntity(1, "Test1","Test1", marvelThumbnailEntity)
-        coEvery { localRepository.getMarvelItem() } returns marvelItemEntity
+        coEvery { marvelItemsRepository.getMarvelItem() } returns marvelItemEntity
 
         //When
         getMarvelItemFromDBUseCase(1)
@@ -66,7 +66,7 @@ class GetMarvelItemFromDBUseCaseTest {
         //Given
         val marvelThumbnailEntity = MarvelThumbnailEntity("Path", "jpg")
         val marvelItemEntity = MarvelItemEntity(1, "Test1",null, marvelThumbnailEntity)
-        coEvery { localRepository.getMarvelItem() } returns marvelItemEntity
+        coEvery { marvelItemsRepository.getMarvelItem() } returns marvelItemEntity
 
         //When
         getMarvelItemFromDBUseCase(1)

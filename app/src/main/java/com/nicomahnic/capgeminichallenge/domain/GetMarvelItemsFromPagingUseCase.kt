@@ -1,12 +1,14 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.repository.PagingRepository
+import androidx.paging.PagingData
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
 
 class GetMarvelItemsFromPagingUseCase(
-    private val pagingRepository: PagingRepository
-) {
+    private val marvelItemsRepository: MarvelItemsRepositoryImpl
+) : UseCasesReturnFlow<PagingData<MarvelItem>> {
 
-    operator fun invoke() = pagingRepository.getItems()
+    override suspend operator fun invoke() = marvelItemsRepository.getItems()
 
 }
 

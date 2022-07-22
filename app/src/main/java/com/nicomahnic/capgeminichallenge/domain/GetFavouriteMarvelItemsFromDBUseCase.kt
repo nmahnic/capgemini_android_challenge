@@ -1,18 +1,17 @@
 package com.nicomahnic.capgeminichallenge.domain
 
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.models.mapper.MarvelEntityItemMapper
-import com.nicomahnic.capgeminichallenge.repository.LocalRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.domain.models.mapper.MarvelEntityItemMapper
+import com.nicomahnic.capgeminichallenge.data.repository.MarvelItemsRepositoryImpl
+import kotlinx.coroutines.flow.*
 
 class GetFavouriteMarvelItemsFromDBUseCase(
-    private val localRepository: LocalRepository,
+    private val marvelItemsRepository: MarvelItemsRepositoryImpl,
     private val marvelEntityItemMapper: MarvelEntityItemMapper
-) {
+) : UseCasesReturnFlow<List<MarvelItem?>?> {
 
-    suspend operator fun invoke(): Flow<List<MarvelItem?>?> = flow {
-        val res = localRepository.readAllMarvelItems()
+    override suspend operator fun invoke(): Flow<List<MarvelItem?>?> = flow {
+        val res = marvelItemsRepository.readAllMarvelItems()
         emit ( marvelEntityItemMapper.mapFromEntityList(res) )
     }
 

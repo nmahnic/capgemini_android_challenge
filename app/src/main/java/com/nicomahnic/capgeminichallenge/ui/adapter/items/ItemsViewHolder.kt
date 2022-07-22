@@ -4,8 +4,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nicomahnic.capgeminichallenge.databinding.ItemMarvelItemBinding
-import com.nicomahnic.capgeminichallenge.models.MarvelItem
-import com.nicomahnic.capgeminichallenge.utils.Utils
+import com.nicomahnic.capgeminichallenge.domain.models.MarvelItem
+import com.nicomahnic.capgeminichallenge.ui.utils.Utils
 
 class ItemsViewHolder(view: View): RecyclerView.ViewHolder(view) {
 

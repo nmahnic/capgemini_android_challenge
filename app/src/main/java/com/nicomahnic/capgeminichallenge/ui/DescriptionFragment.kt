@@ -7,8 +7,8 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.nicomahnic.capgeminichallenge.R
 import com.nicomahnic.capgeminichallenge.databinding.FragmentDescriptionBinding
-import com.nicomahnic.capgeminichallenge.utils.Utils
-import com.nicomahnic.capgeminichallenge.viewmodels.DescriptionViewModel
+import com.nicomahnic.capgeminichallenge.ui.utils.Utils
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.DescriptionViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DescriptionFragment : Fragment(R.layout.fragment_description) {

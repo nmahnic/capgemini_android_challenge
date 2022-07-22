@@ -1,8 +1,8 @@
 package com.nicomahnic.capgeminichallenge.di
 
-import com.nicomahnic.capgeminichallenge.viewmodels.DescriptionViewModel
-import com.nicomahnic.capgeminichallenge.viewmodels.FavouriteViewModel
-import com.nicomahnic.capgeminichallenge.viewmodels.HomeViewModel
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.DescriptionViewModel
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.FavouriteViewModel
+import com.nicomahnic.capgeminichallenge.ui.viewmodels.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
